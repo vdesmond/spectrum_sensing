@@ -55,16 +55,14 @@ To detect the unknown PU (Primary user) signal based on energy of the
 received signal. The Energy detector is optimal to detect the unknown signal
 if the noise power is known. In the energy detection, CR users sense the
 presence/absence of the PUs based on the energy of the received signals. As
-above, the measured signal r (t) is squared and integrated over the observation
+above, the measured signal r(t) is squared and integrated over the observation
 interval T. Finally, the output of the integrator’s compared with a threshold k
 to decide if a PU is present. Since the energy detection depends only on the
 SNR of the received signal, its performance is susceptible to uncertainty in
 noise power. If the noise power is uncertain, the energy detector will not be
 able to detect the signal reliably as the SNR is less than a certain threshold,
 called an SNR wall. In addition, the energy detector can only determine
-the presence of the signal but cannot differentiate signal types. Thereby, the
-energy detector often results in false detection triggered by the unintended CR
-signals.\\[10pt]
+the presence of the signal but cannot differentiate signal types. \\[10pt]
 \textbf{i) Code for performance of detector (pd) under various values of probability
 of false alarm (pfa) for SNR = 6dB}\\
 \definecolor{bg}{rgb}{0.95,0.95,0.95}
@@ -154,17 +152,17 @@ legend(['PFA=' num2str(pf)]);
 \begin{figure}[h!bt]
   \centering
   \includesvg[width=1\linewidth]{ed_pfa}
-  \caption{Pd Vs Pfa for Energy Detection (SNR = 6dB)}
+  \caption{Pd vs Pfa for Energy Detection (SNR = 6dB)}
   \label{fig:1.1}
 \end{figure}
 \begin{figure}[h!bt]
   \centering
   \includesvg[width=1\linewidth]{ed_snr}
-  \caption{Pd Vs SNR for Energy Detection (Pfa = 0.5)}
+  \caption{Pd vs SNR for Energy Detection (Pfa = 0.5)}
   \label{fig:1.2}
 \end{figure}
-The observation from Figure \ref{fig:1.1} is the presence of a tradeoff between Pd and Pfa values. For Pfa values from 0.09 to 0.8 the detection probability is optimum. After that the detection probability approaches 1 for SNR = 4 db.\\[4pt]
-The observation from Figure \ref{fig:1.2} is the presence of a linear increase in the probability of detection for increases in SNR value. For low values of SNR the detection probability is almost 0. Above 8 db the detection probability approaches 1.\\
+From Figure \ref{fig:1.1}, we can infer the fact that there is an trade-off/inverse relationship between Pd and Pfa. Since we want Pd value to be high (greater than 0.5), we see that the corresponding Pfa values range from 0.01 to 0.8. After that the detection probability Pd is approximately 1 for SNR = 6 db.\\[8pt]
+From Figure \ref{fig:1.2}, we can infer that the relation is between Pd and SNR is linear for a certain range after which Pd saturates for higher values of SNR (for Pfa = 0.5). For lower values of SNR the detection probability is almost 0 and increasing at a constant slope for every dB increase in SNR. Above 5 db the detection probability Pd saturates 1.\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Matched Filter Detection}
 \textbf{\large{Aim}}:\\[10pt]
@@ -177,9 +175,7 @@ of matched filter lies in its requirement of smaller time for achieving high
 processing gain for the reason of coherence and of a prior knowledge of the
 basic user signal like the modulation type and order, the shape of the pulse
 and the packet format. The performance of the matched filter will be poor if
-this information has no accuracy. Most wireless networks system have pilot,
-preambles, synchronization word or spreading codes and hence can be used
-for coherent detection.\\[10pt]
+this information has no accuracy.\\[10pt]
 \textbf{i) Code for performance of detector (pd) under various values of probability
 of false alarm (pfa) for SNR = 6dB}\\
 \begin{minted}[linenos=true,bgcolor=bg]{matlab}
@@ -268,20 +264,19 @@ legend(['PFA=' num2str(Pfa)]);
 \begin{figure}[h!bt]
   \centering
   \includesvg[width=1\linewidth]{mfd_pfa}
-  \caption{Pd Vs Pfa for Matched Filter Detection (SNR = 6dB)}
+  \caption{Pd vs Pfa for Matched Filter Detection (SNR = 6dB)}
   \label{fig:2.1}
 \end{figure}
 \begin{figure}[h!bt]
   \centering
   \includesvg[width=1\linewidth]{mfd_snr}
-  \caption{Pd Vs SNR for Matched Filter Detection (Pfa = 0.5)}
+  \caption{Pd vs SNR for Matched Filter Detection (Pfa = 0.5)}
   \label{fig:2.2}
 \end{figure}
-The observation from the Figure \ref{fig:2.1} is the presence of a trade off between
-Pd and Pfa values. For SNR = 6dB, the detection probability approaches
-1after Pfa = 0.5. The observation from the Figure \ref{fig:2.2} is the presence of a linear increase in the probability of detection for increasing SNR values. The detection probability
-is high even for low values of SNR. Above 5 db the detection probability
-reaches 1.
+From Figure \ref{fig:2.1} we can infer the fact that there is an trade-off/inverse relationship between Pd and Pfa, similar to Energy Detection. Since we want over Pd value to be high (greater than 0.5), we see that the corresponding Pfa values range from 0.005 to 0.6. After that the detection probability Pd is approximately 1 for SNR = 6 db. For the same value of SNR, Matched Filter detection provides better Pd vs Pfa characteristics when compared to Energy Detection.\\[8pt]
+
+From Figure \ref{fig:2.2}, we can infer that the relation is between Pd and SNR is linear with saturation at a threshold, similar to Energy Detection (for Pfa = 0.5). However, it can be clearly seen that the characteristics of Pd vs SNR for Matched Filter Detection is much better than that of Energy Detection. The detection probability is high even for very low values of SNR. As expected it saturates to maximum probability around 5 dB.\\
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Cyclostationary Feature Detection}
@@ -477,13 +472,11 @@ grid on;
   \caption{Pd Vs SNR for Cyclostationary Feature Detection}
   \label{fig:3.8}
 \end{figure}
-The observation from the Figures 7.5 and 7.6 is the presence of a linear increase
-in the probability of detection for increasing SNR values. For SNR = 2 dB,
-probability of detection is increased compared to energy and matched filter
-detection. Finally, the detection probability reaches 1 at SNR = 10 db.\\[4pt]
-The observation from the Figure 7.7 is the presence of a tradeoff between Pf
-and Pd. For the lower values of Pf up to .001, probability of detection is 1and
-detection of PU is less for more values of false alarm.\\
+The figures \ref{fig:3.1}, \ref{fig:3.2}, \ref{fig:3.3} and \ref{fig:3.4} show the type of line coding (NRZ), signal with modulation type (BPSK) transmitted and received with AWGN noise, and the spectrum of the received signal respectively. Figures \ref{fig:3.5} and \ref{fig:3.6} show the cross correlation of the received signal with cosine signal and sine+cosine signal respectively. The amplitude of cross-correlated output signal is a measure of how much the received signal resembles the target signal. The correlation peak specifies the location of the target.\\[8pt]
+
+The main inference from figure \ref{fig:3.7} is the presence of decreasing relation between Pd and Pfa, contrary to what was seen in Energy Detection and Matched Filter Detection.For the lower values of Pf up to 0.0001, probability of detection is nearly 1 and after that, detection of PU is less for more probability of false alarm.\\[8pt]
+
+From figure \ref{fig:3.8}, we can infer the presence of a linear increase in the probability of detection Pd for increasing values of SNR. For SNR = 2 dB, probability of detection is increased compared to other methods of detection. Finally, is that the detection probability reaches 1 at SNR = 15 dB.\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Co-Operative Spectrum Sensing}
@@ -573,11 +566,6 @@ legend('Simulation', 'Theory n=10', 'Theory n=5');
   \caption{Complementary ROC of Cooperative sensing - AND rule under AWGN channel}
   \label{fig:4.1}
 \end{figure}
-The observation from the Figure \ref{fig:4.1} is that, observed that, for lower values of
-Pfa probability of missed detection is 1 and as the value increases probability
-of missed detection value gradually decreases. As the number of cognitive
-radio users is increased from 5 to 10, the performance of missed detection is
-increased but there is a trade-off between simulation and theory performance.
-In results of simulation, Pmd value remains 1 up to 0.99 value of Pfa and later
-approaches 1.
+From Figure \ref{fig:4.1} we can infer that for lower values of Pfa, probability of missed detection (Pmd) is almost 1 and as the value of Pfa increases, Pmd value gradually decreases. \\[8pt]
+When the number of users in the cognitive radio system is increased from 5 to 10, the performance of missed detection is increased. In simulation results, Pmd value remains 1 for Pfa values close to 1 (~0.99) and later suddenly reaches 0 when Pfa = 1.
 \end{document}
